@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="quoteApp">
+<head>
+    <meta charset="utf-8">
+    <!--<link rel="stylesheet" ref="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="styles.css"></link>
+    <title>Quotes</title>
+</head>
+<body ng-controller="mainCtrl">
+    <input type="text" placeholder="Text" ng-model="quoteFilter.text">
+    <input type="text" placeholder="Author" ng-model="quoteFilter.author">
+
+    <select class="input-medium" ng-model="sortDirection">
+      <option value="+">Descending</option>
+      <option value="-">Ascending</option>
+    </select>
+    <br><br>
+    <input type="text" placeholder="Add new quote" ng-model="newText">
+    <input type="text" placeholder="New Author" ng-model="newAuthor">
+    <button ng-click="addQuotes()">Add Quote</button>
+    <br>
+
+    <p class="quote-box" ng-repeat="quote in quotes| filter: quoteFilter | orderBy: sortDirection">
+      <span class="text">"{{quote.text}}"</span>
+      <span class="author">{{quote.author}}</span>
+      <button ng-click="deleteMe(quote.text)">Delete</button>
+    </p>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/mainCtrl.js"></script>
+    <script src="js/quoteService.js"></script>
+
+</body>
+</html>
